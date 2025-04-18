@@ -1,0 +1,11 @@
+{
+  "React Page Component": {
+    "prefix": "page",
+    "body": [
+      "const Page = () => {",
+      "  return <></>;",
+      "};",
+      "export default Page;"
+    ]
+  }
+}

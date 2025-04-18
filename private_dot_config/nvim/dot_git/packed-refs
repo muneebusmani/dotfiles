@@ -1,0 +1,11 @@
+# pack-refs with: peeled fully-peeled sorted 
+4c9a2fbd4b5664e6e24ba78f1a6fbd1d8f12de14 refs/remotes/origin/AstroNvim
+dd0f5c550fc1333df39f4b3675ad1ba37eb63ee1 refs/remotes/origin/LazyVim(Universal)
+ca691f583c589fa71442260bf96a79c3b3a371c5 refs/remotes/origin/NvChad(Windows)
+b484d96182eb91162623318d105d1b2b5fdbefc7 refs/remotes/origin/fsharp
+2bd026e91d505d9cdd7dfe2e1e4eb34c45462ddb refs/remotes/origin/laravel
+8f2d589b49ffd480d5969e74b293f50e1233951f refs/remotes/origin/master
+b2112a17e389a9fca1fdfacc5633e9f0daf05720 refs/remotes/origin/scratch
+7c8086a9681b528ff07dd5a967a8bd51bbf0fd15 refs/remotes/origin/scratch(Packer)
+0be8fc751d6646a16e0a03315cf67a427f4847e8 refs/remotes/origin/v1
+613e41599342ed03b31e119ecf3d335ccef48a36 refs/remotes/origin/windows
