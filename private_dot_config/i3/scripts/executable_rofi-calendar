@@ -1,0 +1,49 @@
+#!/bin/env bash
+
+# Always print to i3blocks bar
+echo " $(date '+%A, %d %B %Y |  %I:%M %p')"
+
+# Only continue if clicked
+[ -z "$BLOCK_BUTTON" ] && exit
+
+# Load state
+state_file="/tmp/rofi_calendar_state"
+if [ -f "$state_file" ]; then
+	read month year <"$state_file"
+else
+	month=$(date +%m)
+	year=$(date +%Y)
+fi
+
+# Scroll: 4 = up, 5 = down
+case "$BLOCK_BUTTON" in
+4) ((month--)) ;;
+5) ((month++)) ;;
+1) ;; # Left click = just open
+*) exit ;;
+esac
+
+# Normalize
+if ((month < 1)); then
+	month=12
+	((year--))
+elif ((month > 12)); then
+	month=1
+	((year++))
+fi
+
+# Save new state
+echo "$month $year" >"$state_file"
+
+# Generate calendar
+calendar=$(cal "$month" "$year")
+
+# Show in rofi (asynchronously)
+(
+	echo "$calendar" | rofi -dmenu \
+		-p "Calendar $month/$year" \
+		-theme-str 'window { location: northeast; anchor: northeast; width: 240px; } listview { lines: 8; } textbox-prompt-colon { enabled: false; }' \
+		-config ~/.config/rofi/config.rasi
+) &
+
+exit 0

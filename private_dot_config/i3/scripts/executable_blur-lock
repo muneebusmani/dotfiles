@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-PICTURE=/tmp/i3lock.png
-SCREENSHOT="scrot -z $PICTURE"
+WALLPAPER=$(grep '^file=' ~/.config/nitrogen/bg-saved.cfg | cut -d'=' -f2-)
+LOCK_IMG="/tmp/i3lock_blur_cache.png"
 
-BLUR="5x4"
+# Check if blurred image exists, else generate it once
+if [ ! -f "$LOCK_IMG" ]; then
+	convert "$WALLPAPER" -resize 1920x1080^ -gravity center -extent 1920x1080 -blur 5x4 "$LOCK_IMG"
+fi
 
-$SCREENSHOT
-magick $PICTURE -blur $BLUR $PICTURE
-i3lock -i $PICTURE
-rm $PICTURE
+# Instant lock with cached blurred image
+i3lock -i "$LOCK_IMG"

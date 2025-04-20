@@ -21,12 +21,13 @@ URL="http://api.openweathermap.org/data/2.5/weather?id=${CITY_ID}&units=metric&A
 
 WEATHER_RESPONSE=$(timeout --signal=1 2s curl -s "${URL}") || exit 1
 
-WEATHER_CONDITION=$(echo $WEATHER_RESPONSE | jq '.weather[0].main' | sed 's/"//g')
-WEATHER_TEMP=$(echo $WEATHER_RESPONSE | jq '.main.temp')
+WEATHER_CONDITION=$(echo "$WEATHER_RESPONSE" | jq '.weather[0].main' | sed 's/"//g')
+WEATHER_TEMP=$(echo "$WEATHER_RESPONSE" | jq '.main.temp')
 WIND_DIR=$(echo "$WEATHER_RESPONSE" | jq '.wind.deg')
 WIND_SPEED=$(echo "$WEATHER_RESPONSE" | jq '.wind.speed')
 
 WIND_SPEED=$(awk "BEGIN {print 60*60*$WIND_SPEED/1000}")
+WIND_SPEED=$(printf "%.0f\n" "$WIND_SPEED")
 WIND_DIR=$(awk "BEGIN {print int(($WIND_DIR % 360)/22.5)}")
 DIR_ARRAY=(N NNE NE ENE E ESE SE SSE S SSW SW WSW W WNW NW NNW N)
 WIND_DIR=${DIR_ARRAY[WIND_DIR]}

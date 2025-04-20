@@ -1,0 +1,14 @@
+name: portfolio
+root: ~/
+
+windows:
+  - frontend:
+      root: ~/portfolio
+      layout: main-vertical
+      panes:
+        - nvim .
+  - dev:
+      root: ~/portfolio
+      layout: even-horizontal
+      panes:
+        - npx next dev --experimental-https --turbo

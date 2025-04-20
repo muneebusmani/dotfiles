@@ -1,0 +1,24 @@
+name: skills
+root: ~/
+
+windows:
+  - backend:
+      root: ~/learnskills/backend
+      layout: main-vertical
+      panes:
+        - nvim .
+  - frontend:
+      root: ~/learnskills/frontend
+      layout: main-vertical
+      panes:
+        - nvim .
+  - legacy:
+      root: ~/learnskills-legacy
+      layout: main-vertical
+      panes:
+        - cd ~/learnskills-legacy && npx vite --host
+  - dev:
+      layout: even-horizontal
+      panes:
+        - cd ~/learnskills/backend && composer dev
+        - cd ~/learnskills/frontend && npx next dev --experimental-https --turbo
